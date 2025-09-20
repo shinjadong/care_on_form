@@ -12,6 +12,7 @@ import StepBusinessType from "@/components/enrollment/step-5-business-type"
 import StepOwnershipType from "@/components/enrollment/step-6-ownership-type"
 import StepLicenseType from "@/components/enrollment/step-7-license-type"
 import StepBusinessCategory from "@/components/enrollment/step-8-business-category"
+import StepInternetCCTVCheck from "@/components/enrollment/step-8.3-internet-cctv-check"
 import StepFreeService from "@/components/enrollment/step-8.5-free-service"
 import StepFirstCompletion from "@/components/enrollment/step-9.5-first-completion"
 import StepConfirmation from "@/components/enrollment/step-9-confirmation"
@@ -54,9 +55,11 @@ export type FormData = {
   // Step 8 - 직종
   businessCategory: string
 
-  // Step 8.5 - 무료 서비스
+  // Step 8.3 - 인터넷/CCTV 현황
   hasInternet: string | boolean
   hasCCTV: string | boolean
+
+  // Step 8.5 - 무료 서비스
   wantFreeService: string | boolean
 }
 
@@ -112,6 +115,7 @@ export default function EnrollmentPage() {
     { component: StepOwnershipType, name: "대표자 구성" },
     { component: StepLicenseType, name: "인허가 업종" },
     { component: StepBusinessCategory, name: "직종" },
+    { component: StepInternetCCTVCheck, name: "시설 현황" },
     { component: StepFreeService, name: "무료 서비스" },
     { component: StepFirstCompletion, name: "1차 완료" },
     { component: StepConfirmation, name: "최종 확인" },

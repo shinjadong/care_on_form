@@ -18,7 +18,7 @@ export default function StepFreeService({ formData, updateFormData, onNext, onBa
   const [timeLeft, setTimeLeft] = useState("")
 
   useEffect(() => {
-    // 2일 후 날짜 계산
+    // 2일 후 날짜 계산 (D+2 이벤트)
     const endDate = new Date()
     endDate.setDate(endDate.getDate() + 2)
 
@@ -75,60 +75,51 @@ export default function StepFreeService({ formData, updateFormData, onNext, onBa
         <BackButton onClick={onBack} />
       </div>
       <div className="flex-1 flex flex-col justify-start pt-8 px-6">
-        <div className="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-6 mb-6 border-2 border-yellow-200">
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-3xl">🎁</span>
-            <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
-              단 100명
-            </div>
-          </div>
-          <h2 className="text-xl font-bold mb-2">특별 혜택 안내</h2>
-          <p className="text-gray-700">오늘 가입하시는 분께만!</p>
-        </div>
-
         <h1 className="text-2xl font-semibold text-black leading-relaxed mb-8">
           {showInternetOffer && showCCTVOffer && (
-            <>✨ 인터넷 + AI CCTV<br />1년 무료 ✨</>
+            <>필요하신 서비스를<br />무료로 제공해드립니다</>
           )}
           {showInternetOffer && !showCCTVOffer && (
-            <>✨ 초고속 인터넷<br />1년 무료 ✨</>
+            <>매장 인터넷을<br />무료로 설치해드립니다</>
           )}
           {!showInternetOffer && showCCTVOffer && (
-            <>✨ AI CCTV<br />1년 무료 ✨</>
+            <>AI CCTV를<br />무료로 설치해드립니다</>
           )}
         </h1>
 
-        <div className="bg-white rounded-xl border-2 border-gray-100 p-6 mb-6 shadow-sm">
-          <h3 className="font-semibold mb-4">제공 혜택</h3>
+        <div className="bg-gray-50 rounded-xl p-5 mb-6">
+          <h3 className="font-semibold mb-4 flex items-center">
+            <span className="text-[#009DA2] mr-2">●</span>
+            1년 무료 제공 서비스
+          </h3>
           <div className="space-y-3">
-            {showCCTVOffer && (
+            {showInternetOffer && (
               <div className="flex items-start">
-                <span className="text-2xl mr-3">📹</span>
+                <span className="text-lg mr-3">🌐</span>
                 <div>
-                  <p className="font-medium">AI 지능형 CCTV (KT) 4대</p>
-                  <p className="text-sm text-gray-600">24시간 매장 보안 & AI 이상감지</p>
+                  <p className="font-medium">초고속 인터넷 (500M 기가라이트)</p>
+                  <p className="text-sm text-gray-600">안정적인 비즈니스 인터넷 환경 구축</p>
                 </div>
               </div>
             )}
-            {showInternetOffer && (
+            {showCCTVOffer && (
               <div className="flex items-start">
-                <span className="text-2xl mr-3">🌐</span>
+                <span className="text-lg mr-3">📹</span>
                 <div>
-                  <p className="font-medium">500M 기가라이트 초고속 인터넷</p>
-                  <p className="text-sm text-gray-600">안정적인 비즈니스 인터넷</p>
+                  <p className="font-medium">AI 지능형 CCTV 4대 (KT)</p>
+                  <p className="text-sm text-gray-600">24시간 매장 보안 및 이상감지 시스템</p>
                 </div>
               </div>
             )}
           </div>
         </div>
 
-        <div className="bg-red-50 rounded-xl p-4 mb-8 border border-red-200">
+        <div className="bg-blue-50 rounded-xl p-4 mb-8 border border-blue-100">
           <div className="flex items-center mb-2">
-            <span className="text-xl mr-2">⏰</span>
-            <p className="font-semibold text-red-700">남은 시간</p>
+            <span className="text-lg mr-2">⏰</span>
+            <p className="font-medium text-gray-700">신청 가능 기간</p>
           </div>
-          <p className="text-2xl font-bold text-red-600">{timeLeft}</p>
-          <p className="text-sm text-gray-700 mt-2">이 기회를 놓치지 마세요!</p>
+          <p className="text-lg font-semibold text-gray-900">{timeLeft} 남음</p>
         </div>
 
         <div className="space-y-3">
