@@ -1,1 +1,7 @@
 node_modules
+.next
+.env
+.env.local
+
+# Config files with sensitive data
+docs/고객 가입 시스템(리뉴얼)/00. config.md
