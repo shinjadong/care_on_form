@@ -16,6 +16,7 @@ import StepInternetCCTVCheck from "@/components/enrollment/step-8.3-internet-cct
 import StepFreeService from "@/components/enrollment/step-8.5-free-service"
 import StepFirstCompletion from "@/components/enrollment/step-9.5-first-completion"
 import StepConfirmation from "@/components/enrollment/step-9-confirmation"
+import StepDocumentUpload from "@/components/enrollment/step-10-document-upload"
 
 export type FormData = {
   // Step 1 - 대표자 정보
@@ -61,6 +62,12 @@ export type FormData = {
 
   // Step 8.5 - 무료 서비스
   wantFreeService: string | boolean
+
+  // Step 10 - 서류 업로드
+  businessRegistrationUrl: string | null
+  idCardFrontUrl: string | null
+  idCardBackUrl: string | null
+  bankbookUrl: string | null
 }
 
 export default function EnrollmentPage() {
@@ -97,9 +104,14 @@ export default function EnrollmentPage() {
     hasInternet: false,
     hasCCTV: false,
     wantFreeService: false,
+    // Step 10
+    businessRegistrationUrl: null,
+    idCardFrontUrl: null,
+    idCardBackUrl: null,
+    bankbookUrl: null,
   })
 
-  const updateFormData = (field: keyof FormData, value: string | boolean) => {
+  const updateFormData = (field: keyof FormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
@@ -118,6 +130,7 @@ export default function EnrollmentPage() {
     { component: StepInternetCCTVCheck, name: "시설 현황" },
     { component: StepFreeService, name: "무료 서비스" },
     { component: StepFirstCompletion, name: "1차 완료" },
+    { component: StepDocumentUpload, name: "서류 업로드" },
     { component: StepConfirmation, name: "최종 확인" },
   ]
 
