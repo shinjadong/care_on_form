@@ -163,7 +163,7 @@ export default function StepDocumentUpload({ formData, updateFormData, onNext, o
     },
   ])
 
-  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([])
+  const fileInputRefs = useRef<{[key: string]: HTMLInputElement | null}>({})
 
   const handleFileSelect = async (
     category: 'basic' | 'photos' | 'corporate',

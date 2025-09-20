@@ -187,6 +187,7 @@ export default function EnrollmentPage() {
       phoneNumber: "",
       businessName: "",
       businessNumber: "",
+      email: "",
       storeName: "",
       storeAddress: "",
       storePostcode: "",
@@ -200,6 +201,24 @@ export default function EnrollmentPage() {
       hasInternet: false,
       hasCCTV: false,
       wantFreeService: false,
+      // 기본 서류
+      businessRegistrationUrl: null,
+      idCardFrontUrl: null,
+      idCardBackUrl: null,
+      bankbookUrl: null,
+      businessLicenseUrl: null,
+      // 사업장 사진
+      signPhotoUrl: null,
+      doorClosedUrl: null,
+      doorOpenUrl: null,
+      interiorUrl: null,
+      productUrl: null,
+      businessCardUrl: null,
+      // 법인 추가 서류
+      corporateRegistrationUrl: null,
+      shareholderListUrl: null,
+      sealCertificateUrl: null,
+      sealUsageUrl: null,
     })
   }
 

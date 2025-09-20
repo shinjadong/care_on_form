@@ -55,7 +55,8 @@ export default function StepContactBusiness({ formData, updateFormData, onNext, 
             placeholder="example@email.com"
             value={formData.email || ""}
             onChange={(value) => updateFormData("email", value)}
-            type="email"
+            type="text"
+            inputMode="email"
           />
         </div>
       </div>
