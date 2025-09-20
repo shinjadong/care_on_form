@@ -31,6 +31,7 @@ export type FormData = {
   phoneNumber: string
   businessName: string
   businessNumber: string
+  email: string
 
   // Step 3 - 매장 정보
   storeName: string
@@ -64,10 +65,26 @@ export type FormData = {
   wantFreeService: string | boolean
 
   // Step 10 - 서류 업로드
+  // 기본 서류
   businessRegistrationUrl: string | null
   idCardFrontUrl: string | null
   idCardBackUrl: string | null
   bankbookUrl: string | null
+  businessLicenseUrl: string | null
+
+  // 사업장 사진
+  signPhotoUrl: string | null
+  doorClosedUrl: string | null
+  doorOpenUrl: string | null
+  interiorUrl: string | null
+  productUrl: string | null
+  businessCardUrl: string | null
+
+  // 법인 추가 서류
+  corporateRegistrationUrl: string | null
+  shareholderListUrl: string | null
+  sealCertificateUrl: string | null
+  sealUsageUrl: string | null
 }
 
 export default function EnrollmentPage() {
@@ -83,6 +100,7 @@ export default function EnrollmentPage() {
     phoneNumber: "",
     businessName: "",
     businessNumber: "",
+    email: "",
     // Step 3
     storeName: "",
     storeAddress: "",
@@ -104,11 +122,24 @@ export default function EnrollmentPage() {
     hasInternet: false,
     hasCCTV: false,
     wantFreeService: false,
-    // Step 10
+    // Step 10 - 기본 서류
     businessRegistrationUrl: null,
     idCardFrontUrl: null,
     idCardBackUrl: null,
     bankbookUrl: null,
+    businessLicenseUrl: null,
+    // 사업장 사진
+    signPhotoUrl: null,
+    doorClosedUrl: null,
+    doorOpenUrl: null,
+    interiorUrl: null,
+    productUrl: null,
+    businessCardUrl: null,
+    // 법인 추가 서류
+    corporateRegistrationUrl: null,
+    shareholderListUrl: null,
+    sealCertificateUrl: null,
+    sealUsageUrl: null,
   })
 
   const updateFormData = (field: keyof FormData, value: any) => {

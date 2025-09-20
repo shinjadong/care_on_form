@@ -16,7 +16,8 @@ interface StepContactBusinessProps {
 export default function StepContactBusiness({ formData, updateFormData, onNext, onBack }: StepContactBusinessProps) {
   const isValid =
     formData.businessName.trim() !== "" &&
-    formData.businessNumber.length === 10
+    formData.businessNumber.length === 10 &&
+    formData.email?.includes("@")
 
   return (
     <CareonContainer>
@@ -48,7 +49,14 @@ export default function StepContactBusiness({ formData, updateFormData, onNext, 
             maxLength={10}
             inputMode="numeric"
           />
-          <p className="text-sm text-gray-500">10자리 숫자를 입력해 주세요</p>
+          <p className="text-sm text-gray-500 mb-4">10자리 숫자를 입력해 주세요</p>
+          <CareonInput
+            label="이메일 주소"
+            placeholder="example@email.com"
+            value={formData.email || ""}
+            onChange={(value) => updateFormData("email", value)}
+            type="email"
+          />
         </div>
       </div>
       <div className="p-6 pt-0">
