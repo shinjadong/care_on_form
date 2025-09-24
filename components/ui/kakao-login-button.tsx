@@ -1,30 +1,42 @@
 "use client"
 
-import { useKakaoLogin } from "@/hooks/use-kakao-login"
+import { useState } from "react"
+import { supabase } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
 
 interface KakaoLoginButtonProps {
   className?: string
-  onSuccess?: () => void
-  onError?: (error: any) => void
+  onError?: (error: string) => void
 }
 
-export function KakaoLoginButton({ className, onSuccess, onError }: KakaoLoginButtonProps) {
-  const { loginWithKakao, loading, isInitialized } = useKakaoLogin()
+export function KakaoLoginButton({ className, onError }: KakaoLoginButtonProps) {
+  const [loading, setLoading] = useState(false)
 
   const handleLogin = async () => {
     try {
-      await loginWithKakao()
-      onSuccess?.()
+      setLoading(true)
+
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'kakao',
+        options: {
+          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/enrollment')}`
+        }
+      })
+
+      if (error) {
+        onError?.(error.message)
+      }
     } catch (error) {
-      onError?.(error)
+      onError?.("카카오톡 로그인 중 오류가 발생했습니다.")
+    } finally {
+      setLoading(false)
     }
   }
 
   return (
     <button
       onClick={handleLogin}
-      disabled={loading || !isInitialized}
+      disabled={loading}
       className={cn(
         "w-full py-4 px-6 rounded-xl font-semibold text-base transition-all duration-200 active:scale-[0.98] disabled:opacity-50 disabled:cursor-not-allowed",
         "bg-[#FEE500] hover:bg-[#FFEB3B] text-[#000000] border border-[#FEE500]",

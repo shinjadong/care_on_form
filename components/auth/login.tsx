@@ -98,12 +98,8 @@ export default function Login() {
 
         <div className="space-y-3">
           <KakaoLoginButton
-            onSuccess={() => {
-              setMessage("카카오톡 로그인 성공!")
-              window.location.reload()
-            }}
-            onError={() => {
-              setMessage("카카오톡 로그인 중 오류가 발생했습니다.")
+            onError={(error) => {
+              setMessage(error)
             }}
           />
 
