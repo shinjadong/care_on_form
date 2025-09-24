@@ -2,6 +2,7 @@
 
 // Customer enrollment form
 import { useState } from "react"
+import ProtectedRoute from "@/components/auth/protected-route"
 import StepOwnerInfo from "@/components/enrollment/step-1-owner-info"
 import StepWelcomeTosspay from "@/components/enrollment/step-1.5-welcome-tosspay"
 import StepContactBusiness from "@/components/enrollment/step-2-contact-business"
@@ -225,11 +226,13 @@ export default function EnrollmentPage() {
   const CurrentStep = stepComponents[currentStepIndex].component
 
   return (
-    <CurrentStep
-      formData={formData}
-      updateFormData={updateFormData}
-      onNext={currentStepIndex === stepComponents.length - 1 ? handleReset : handleNext}
-      onBack={handleBack}
-    />
+    <ProtectedRoute>
+      <CurrentStep
+        formData={formData}
+        updateFormData={updateFormData}
+        onNext={currentStepIndex === stepComponents.length - 1 ? handleReset : handleNext}
+        onBack={handleBack}
+      />
+    </ProtectedRoute>
   )
 }

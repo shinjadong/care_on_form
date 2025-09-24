@@ -3,6 +3,83 @@
 ## 프로젝트 개요
 케어온 사업자를 위한 9단계 고객 가입 시스템입니다. Next.js 14와 TypeScript로 구축되었으며, 한국 사업자 등록 시스템에 최적화되어 있습니다.
 
+## ⚠️ 개발 필수 가이드
+
+### 📚 문서 참조 필수사항
+본 프로젝트의 모든 개발 작업은 **반드시** `docs/` 폴더의 관련 문서를 숙지한 후 진행해야 합니다.
+
+#### 핵심 참조 문서
+- **`docs/고객 가입 시스템(리뉴얼)/`**: 전체 시스템 설계 및 요구사항
+  - `고객 가입 시스템(리뉴얼).canvas`: 전체 시스템 플로우 및 UI 설계
+  - `필요서류.md`: 각 단계별 필요 서류 및 데이터 요구사항
+  - `데이터베이스 설계/`: 각 단계별 상세 데이터 스키마 및 비즈니스 로직
+    - `1. 기본정보입력.md`: Step 1-3 상세 명세
+    - `2. 신청유형선택.md`: Step 4-5 상세 명세  
+    - `3. 비대면 가맹 신청.md`: Step 6-9 상세 명세
+  - `카드사 동의서/`: 각 카드사별 동의서 양식 및 필드 정보
+
+#### 개발 시 주의사항
+1. **컴포넌트 개발 전**: 해당 단계의 데이터베이스 설계 문서 숙지
+2. **폼 필드 추가 시**: 필요서류.md에서 데이터 타입 및 검증 규칙 확인
+3. **UI/UX 구현 시**: canvas 파일의 디자인 가이드라인 준수
+4. **카드사 연동 시**: 해당 카드사 동의서 문서의 필드 매핑 정보 활용
+
+⚠️ **문서 미참조로 인한 재작업을 방지하기 위해 반드시 관련 문서를 먼저 검토하시기 바랍니다.**
+
+### 🛠️ MCP (Model Context Protocol) 활용 권장
+
+본 프로젝트에서는 **MCP 도구의 적극적인 활용**을 통해 개발 효율성을 극대화하시기 바랍니다.
+
+#### 주요 MCP 활용 시나리오
+
+**1. 문서 분석 및 정보 추출**
+```bash
+# 데이터베이스 설계 문서에서 필드 정보 추출
+mcp_Desktop_Commander_read_file("docs/고객 가입 시스템(리뉴얼)/데이터베이스 설계/1. 기본정보입력.md")
+
+# 여러 카드사 동의서 비교 분석
+mcp_Desktop_Commander_read_multiple_files([
+  "docs/고객 가입 시스템(리뉴얼)/카드사 동의서/국민카드-동의서.md",
+  "docs/고객 가입 시스템(리뉴얼)/카드사 동의서/비씨카드-동의서.md"
+])
+```
+
+**2. 코드베이스 검색 및 분석**
+```bash
+# 특정 컴포넌트나 함수 위치 검색
+mcp_Desktop_Commander_start_search("path", "CareonInput", searchType="files")
+
+# 비즈니스 로직 패턴 검색
+mcp_Desktop_Commander_start_search("path", "validation", searchType="content")
+```
+
+**3. 실시간 개발 및 테스트**
+```bash
+# Python을 활용한 데이터 검증 로직 테스트
+mcp_Desktop_Commander_start_process("python3 -i")
+mcp_Desktop_Commander_interact_with_process(pid, "import re; 사업자등록번호_패턴 = r'\d{3}-\d{2}-\d{5}'")
+
+# Node.js를 활용한 TypeScript 타입 검증
+mcp_Desktop_Commander_start_process("node -i")
+```
+
+**4. 파일 구조 최적화**
+```bash
+# 프로젝트 구조 분석
+mcp_Desktop_Commander_directory_tree("/home/tlswk/projects/careon/care_on_form")
+
+# 컴포넌트 파일 일괄 처리
+mcp_Desktop_Commander_search_files("components/enrollment", "step-*.tsx")
+```
+
+#### MCP 활용 이점
+- **문서 기반 개발**: docs/ 폴더의 모든 문서를 실시간 참조하며 개발
+- **일관성 보장**: 기존 코드 패턴 분석을 통한 일관된 코드 스타일 유지
+- **빠른 프로토타이핑**: 실시간 코드 테스트 및 검증
+- **효율적인 디버깅**: 로그 분석 및 에러 추적
+
+💡 **권장사항**: 새로운 기능 개발 시 MCP를 활용하여 관련 문서 검토 → 기존 코드 패턴 분석 → 프로토타입 개발 → 테스트 순서로 진행하시기 바랍니다.
+
 ## 기술 스택
 - **프레임워크**: Next.js 14.2.16 (App Router)
 - **언어**: TypeScript 5
