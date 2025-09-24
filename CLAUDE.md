@@ -80,6 +80,75 @@ mcp_Desktop_Commander_search_files("components/enrollment", "step-*.tsx")
 
 💡 **권장사항**: 새로운 기능 개발 시 MCP를 활용하여 관련 문서 검토 → 기존 코드 패턴 분석 → 프로토타입 개발 → 테스트 순서로 진행하시기 바랍니다.
 
+### 📝 Git 워크플로우 필수사항
+
+본 프로젝트에서는 **모든 수정 완료 시마다 즉시 GitHub 커밋**을 수행해야 합니다.
+
+#### 필수 커밋 규칙
+
+**1. 수정 완료 즉시 커밋**
+```bash
+# 수정사항 스테이징
+git add .
+
+# 커밋 메시지 작성 (한국어 사용)
+git commit -m "feat: 대표자 정보 입력 컴포넌트 Progressive UI 구현"
+
+# 원격 저장소 푸시
+git push origin main
+```
+
+**2. 커밋 메시지 컨벤션**
+- **feat**: 새로운 기능 추가
+- **fix**: 버그 수정
+- **docs**: 문서 수정
+- **style**: 코드 포맷팅, 세미콜론 누락 등
+- **refactor**: 코드 리팩토링
+- **test**: 테스트 코드 추가/수정
+- **chore**: 빌드 업무 수정, 패키지 매니저 수정
+
+**3. 커밋 메시지 예시**
+```bash
+git commit -m "feat: 통신사 선택 드롭다운 컴포넌트 구현"
+git commit -m "fix: 사업자등록번호 검증 로직 오류 수정"
+git commit -m "docs: CLAUDE.md 개발 가이드 섹션 추가"
+git commit -m "style: CareonButton 컴포넌트 Tailwind 클래스 정리"
+git commit -m "refactor: 폼 검증 유틸 함수 분리 및 최적화"
+```
+
+#### 작업 단위별 커밋 원칙
+
+**🔄 즉시 커밋해야 하는 상황:**
+- [ ] 새로운 컴포넌트 완성 시
+- [ ] 기존 컴포넌트 기능 수정 완료 시
+- [ ] 버그 수정 완료 시
+- [ ] 문서 업데이트 완료 시
+- [ ] 타입 정의 추가/수정 시
+- [ ] 스타일링 적용 완료 시
+- [ ] API 라우트 구현 완료 시
+
+**📦 권장 커밋 크기:**
+- 한 번의 커밋은 **하나의 완성된 기능 단위**로 제한
+- 파일 5개 이하의 변경사항으로 구성
+- 코드 리뷰가 용이한 크기로 유지
+
+#### GitKraken MCP 활용
+```bash
+# Git 상태 확인
+mcp_GitKraken_git_status("./")
+
+# 변경사항 스테이징 및 커밋
+mcp_GitKraken_git_add_or_commit("./", "add")
+mcp_GitKraken_git_add_or_commit("./", "commit", message="feat: 새로운 기능 구현")
+
+# 원격 저장소 푸시
+mcp_GitKraken_git_push("./")
+```
+
+⚠️ **중요**: 작업 중 임시 저장이 필요한 경우 `git stash`를 활용하되, **작업 완료 시 반드시 커밋**을 수행하여 변경 이력을 보존하시기 바랍니다.
+
+💡 **팁**: 각 단계별 컴포넌트 개발 완료 시마다 개별 커밋을 수행하면, 문제 발생 시 해당 단계로 쉽게 롤백할 수 있습니다.
+
 ## 기술 스택
 - **프레임워크**: Next.js 14.2.16 (App Router)
 - **언어**: TypeScript 5
