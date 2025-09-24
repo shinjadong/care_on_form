@@ -19,7 +19,7 @@ export function KakaoLoginButton({ className, onError }: KakaoLoginButtonProps) 
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'kakao',
         options: {
-          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/enrollment')}`
+          redirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent('/enrollment/')}`
         }
       })
 

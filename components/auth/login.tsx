@@ -27,8 +27,8 @@ export default function Login() {
         setMessage(error.message)
       } else {
         setMessage("로그인 성공!")
-        // 성공 시 페이지 새로고침하여 인증 상태 업데이트
-        window.location.reload()
+        // 성공 시 enrollment 페이지로 리다이렉트
+        window.location.href = '/enrollment/'
       }
     } catch (error) {
       setMessage("로그인 중 오류가 발생했습니다.")
